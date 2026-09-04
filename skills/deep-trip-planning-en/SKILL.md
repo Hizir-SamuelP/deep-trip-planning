@@ -22,7 +22,7 @@ If the user asks where to go rather than how to visit a named place, do not inve
 
 Record booked lodging (address, check-in/out, cancellation deadline, all-in cost), fixed transport, travelers, must-do and no-go items, and constraints such as mobility, dietary needs, motion sickness, children, or older travelers.
 
-Run `${CLAUDE_SKILL_DIR}/../deep-trip-planning/scripts/trip_dates.py <country-code> <start-date> <end-date>`; **never calculate weekdays mentally**. It checks the clock against network time before reporting weekdays, holidays, and long weekends. Then check whether dates are in the past and whether the user's “weekend” or other weekday assumptions match the calendar. Ask before continuing if they do not.
+Run `${CLAUDE_SKILL_DIR}/../deep-trip-planning/scripts/trip_dates.py <country-code> <start-date> <end-date>`; **never calculate weekdays mentally**. It uses the one shared script in the sibling Chinese skill. If that sibling directory or script is unavailable, stop date-dependent planning, say that dates are unverified, and ask the user to install the complete paired bundle (including `scripts/`) or provide a verifiable calendar—never silently replace it with mental arithmetic. Then check whether dates are in the past and whether the user's “weekend” or other weekday assumptions match the calendar. Ask before continuing if they do not.
 
 Set a daily origin: the nearest lodging station in a city, the lodging plus parking constraints on a road trip, or one origin per city on a multi-city trip. If lodging is undecided, read `references/lodging-decisions.md` before routing anything.
 
@@ -97,4 +97,5 @@ When you find a problem, provide a replacement, not just a warning.
 - `references/lodging-decisions.md` — use when comparing lodging.
 - `references/budget-and-customs.md` — use in step 6.
 - `references/entry-and-health.md` — use after choosing a destination and before booking; it never authorizes a direct visa conclusion.
+- `references/decision-thresholds.md` — use before routing or making an A/B choice; it holds the full threshold rules and source boundaries.
 - `assets/planning-templates.md` — use when writing the final plan.

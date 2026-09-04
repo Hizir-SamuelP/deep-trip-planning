@@ -24,10 +24,11 @@ class Day:
     date: str
     weekday: str
     is_weekend: bool
-    is_public_holiday: bool
+    is_public_holiday: bool | None
     holiday_name: str | None
-    in_long_weekend: bool
+    in_long_weekend: bool | None
     long_weekend_range: str | None
+    holiday_data_available: bool
 
 
 def process_clock() -> datetime:
@@ -99,7 +100,7 @@ def parse_date(value: str) -> date:
 def load_holidays(country: str, start: date, end: date):
     try:
         import holidays
-    except ModuleNotFoundError:
+    except ImportError:
         print("缺少 holidays 库。请先运行：pip install holidays", file=sys.stderr)
         raise SystemExit(2)
 
@@ -149,10 +150,25 @@ def long_weekend_ranges(
     return ranges
 
 
-def calendar(country: str, start: date, end: date) -> list[Day] | None:
+def calendar(country: str, start: date, end: date) -> tuple[list[Day], bool]:
     local_holidays = load_holidays(country, start, end)
     if local_holidays is None:
-        return None
+        return (
+            [
+                Day(
+                    date=(start + timedelta(days=offset)).isoformat(),
+                    weekday=(start + timedelta(days=offset)).strftime("%A"),
+                    is_weekend=(start + timedelta(days=offset)).weekday() >= 5,
+                    is_public_holiday=None,
+                    holiday_name="需手工核验",
+                    in_long_weekend=None,
+                    long_weekend_range="需手工核验",
+                    holiday_data_available=False,
+                )
+                for offset in range((end - start).days + 1)
+            ],
+            False,
+        )
     holiday_dates = set(local_holidays.keys())
     long_weekends = long_weekend_ranges(start, end, holiday_dates)
     result: list[Day] = []
@@ -173,21 +189,31 @@ def calendar(country: str, start: date, end: date) -> list[Day] | None:
                     if long_weekend
                     else None
                 ),
+                holiday_data_available=True,
             )
         )
-    return result
+    return result, True
 
 
-def print_calendar(country: str, days: list[Day]) -> None:
+def print_calendar(country: str, days: list[Day], holiday_data_available: bool) -> None:
     print(f"已用网络时间核验 · {country}")
     print("日期         星期       周末  法定假日  假日名称                 连假区间")
     print("-" * 88)
     for day in days:
+        holiday_status = (
+            "是"
+            if day.is_public_holiday
+            else "否"
+            if day.is_public_holiday is False
+            else "需手工核验"
+        )
         print(
             f"{day.date}  {day.weekday:<9}  {'是' if day.is_weekend else '否':<4}  "
-            f"{'是' if day.is_public_holiday else '否':<8}  "
+            f"{holiday_status:<8}  "
             f"{(day.holiday_name or '—'):<23}  {day.long_weekend_range or '—'}"
         )
+    if not holiday_data_available:
+        print("\n⚠ 该地区无假日数据，需手工核验法定假日与连假。")
     print("\nJSON:")
     print(json.dumps([asdict(day) for day in days], ensure_ascii=False, indent=2))
 
@@ -207,14 +233,12 @@ def main() -> int:
     if not verified:
         print(detail, file=sys.stderr)
         return 1
-    days = calendar(args.country, args.start_date, args.end_date)
-    if days is None:
-        print(
-            f"{args.country.upper()}：该地区无假日数据，需手工核验。"
-            "请从当地政府或旅游主管部门的官方日历确认法定假日与连假。"
-        )
-        return 0
-    print_calendar(args.country.upper(), days)
+    days, holiday_data_available = calendar(
+        args.country,
+        args.start_date,
+        args.end_date,
+    )
+    print_calendar(args.country.upper(), days, holiday_data_available)
     return 0
 
 

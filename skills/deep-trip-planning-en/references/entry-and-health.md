@@ -2,8 +2,30 @@
 
 Entry requirements are a gate, not an administrative detail to defer. They change often and can differ by nationality, connection point, travel purpose, and length of stay.
 
-Collect each traveler's passport country and expiry date, route including transit points, purpose and length of stay, existing permits, and health or medication needs. **Do not directly state that a traveler needs or does not need a visa.** Instead, check the destination's immigration/foreign-ministry tool, its embassy page for the traveler, official transit-country rules, and the airline's Timatic-style page as a boarding cross-check.
+## Facts to collect first
 
-Verify visa waiver, visa on arrival, e-visa or travel authorization; application lead time; electronic arrival registration; passport validity and blank-page rules; onward-ticket, lodging, and proof-of-funds requirements. If no current official source is available, write a dated recheck action and its official destination rather than a conclusion.
+- Each traveler's passport country, expiry date, travel purpose, and expected length of stay.
+- Destination and every transit point; a transit country can require a permit too.
+- Existing visas, residence permits, or trusted-traveler status.
+- Pregnancy, chronic conditions, prescription medicines, children, or older travelers when they change a health or insurance decision.
 
-For health, use destination health and border authorities plus WHO/CDC destination guidance. Check vaccinations, declarations, quarantine, and medication rules by generic drug name. For insurance, first see whether visa, car rental, or an activity requires it; then compare medical care and evacuation limits, pre-existing-condition exclusions, cancellation/interruption, baggage, deductible, activity exclusions, and 24-hour assistance. Put unresolved entry, health, and insurance actions in the deadline table.
+## Do not give a visa conclusion from memory
+
+**Do not directly state that a traveler needs or does not need a visa.** The skill's job is to make the verification path and deadlines visible, not to substitute training data for an official determination. For each traveler, check and record the date of:
+
+1. The destination immigration, interior-ministry, or foreign-ministry eligibility tool.
+2. The destination embassy/consulate page for the traveler's location.
+3. Official transit-country rules.
+4. The airline's Timatic-style entry page as a boarding cross-check, not a replacement for government guidance.
+
+Verify visa waiver, visa on arrival, e-visa or travel authorization; application and approval lead time; electronic arrival registration; passport-validity and blank-page rules; onward-ticket, lodging, and proof-of-funds requirements. If no current official source is available, write “recheck X days before departure at [official authority]” rather than “no visa required.”
+
+## Health and insurance
+
+- Use destination health and border authorities plus WHO/CDC destination guidance for vaccination, declaration, quarantine, and medicine rules.
+- Check prescriptions by generic drug name, permitted quantity, required doctor letter, and the destination's restricted-medicine list; do not rely on the brand name.
+- Insurance is neither automatic nor automatically dispensable. First check whether a visa, rental car, or high-risk activity requires it. Then compare medical and evacuation limits, pre-existing-condition exclusions, cancellation/interruption, baggage, deductible, activity exclusions, and 24-hour assistance.
+
+## Put it in the plan
+
+After hard constraints, include an entry-and-health table with traveler, item to verify, official source, check date, latest action date, and current state. Any unresolved item stays open in the pre-delivery self-review and dated countdown.

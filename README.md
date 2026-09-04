@@ -51,7 +51,11 @@ mkdir -p ~/.claude/skills
 cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 ```
 
-**Claude.ai** — upload `skills/deep-trip-planning/SKILL.md` and the `references/` folder as project files.
+That command copies the complete skill, including `scripts/`, `references/`, and `assets/`. Do not install only `SKILL.md`: the date checker is a hard safety requirement.
+
+**English edition** — install the complete Chinese skill above as the shared script provider, then copy `skills/deep-trip-planning-en` beside it. The English edition deliberately shares the one checked date script; it does not carry an independently drifting copy.
+
+**Claude.ai** — upload the entire `skills/deep-trip-planning/` folder, including `SKILL.md`, `scripts/`, `references/`, and `assets/`. If the interface cannot preserve that folder, do not ask it to calculate weekdays from memory; supply a verified calendar instead.
 
 Then just ask naturally: *"Plan me 5 days in Lisbon in April"* or *"Look at this itinerary and tell me what's wrong with it."*
 
@@ -62,6 +66,7 @@ skills/deep-trip-planning/
 ├── SKILL.md                        # Workflow + decision rules
 ├── scripts/trip_dates.py           # Network-verified weekdays, holidays, long weekends
 ├── evals/evals.json                # Regression and trigger cases
+├── assets/planning-templates.md    # Output, daily, countdown, packing, emergency templates
 └── references/
     ├── verification.md             # Day-of-week checks, holidays, policy changes,
     │                               #   seasonal windows, golden-hour back-solving
@@ -69,8 +74,16 @@ skills/deep-trip-planning/
     │                               #   self-drive checklist, pass math, the 3-layer map method
     ├── lodging-decisions.md        # All-in price comparison, amenity-listing traps,
     │                               #   switching thresholds, closing the decision
-    └── budget-and-customs.md       # Budget structure, uncapped line items,
-                                    #   duty-free allowances, cash, baggage
+    ├── budget-and-customs.md       # Budget structure, uncapped line items,
+    │                               #   duty-free allowances, cash, baggage
+    ├── entry-and-health.md         # Entry, health, passport, medication, insurance checks
+    └── decision-thresholds.md      # Decision closures and source boundaries
+
+skills/deep-trip-planning-en/       # English parallel skill; shares the script above
+├── SKILL.md
+├── assets/
+├── evals/
+└── references/
 ```
 
 Progressive disclosure: `SKILL.md` loads when the skill triggers; reference files load only when that part of the workflow needs them.
@@ -152,7 +165,11 @@ mkdir -p ~/.claude/skills
 cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 ```
 
-**Claude.ai** —— 把 `skills/deep-trip-planning/SKILL.md` 和 `references/` 目录作为项目文件上传。
+这条命令会复制完整 skill，包括 `scripts/`、`references/` 和 `assets/`。不能只装 `SKILL.md`：日期脚本是硬性安全要求。
+
+**英文版** —— 先按上面方式完整安装中文版（它提供唯一一份共享脚本），再把 `skills/deep-trip-planning-en` 复制到其同级目录。英文版刻意复用这份脚本，不保留会漂移的第二个副本。
+
+**Claude.ai** —— 上传完整的 `skills/deep-trip-planning/` 目录，包括 `SKILL.md`、`scripts/`、`references/` 和 `assets/`。如果界面不能保留目录结构，就不要让模型心算星期几；改为提供已核验的日历。
 
 然后正常提问就会触发：*"帮我规划 4 月里斯本 5 天"* 或 *"看看我这个行程有没有问题"*。
 
