@@ -98,6 +98,10 @@ Issues and PRs welcome — especially:
 
 `evals/evals.json` holds the test prompts. If you change `SKILL.md`, re-run them.
 
+## Related
+
+- **[niuma-recheck](https://github.com/Hizir-SamuelP/niuma-recheck)** — the same idea pointed the other way. This skill exists so a plan doesn't fall apart on the ground; that one exists so a worker AI's "it's done" doesn't go unverified. Both are about closing the gap between *written down* and *actually true*.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
@@ -179,6 +183,10 @@ cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 - **失败报告**：它做出来的攻略在现场哪里崩了、为什么
 
 `evals/evals.json` 是测试用例。改了 `SKILL.md` 记得重跑一遍。
+
+## 相关
+
+- **[niuma-recheck](https://github.com/Hizir-SamuelP/niuma-recheck)** —— 同一套思路的另一个方向。这个 skill 防的是「攻略写完了、到现场还得重查」；那个防的是「AI 说做完了、其实没有」。都是在堵「写下来」和「真的成立」之间的那道缝。
 
 ## 许可
 
