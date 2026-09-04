@@ -1,0 +1,56 @@
+{
+  "skill_name": "deep-trip-planning-en",
+  "evals": [
+    {
+      "id": 0,
+      "name": "from-scratch-city-trip",
+      "prompt": "Plan five days in Seoul for two people from April 10 to 14, 2026. We are staying in Myeongdong, want Hongdae and Seongsu, enjoy coffee and independent shops, and dislike queues.",
+      "expected_output": "A usable Markdown itinerary with verified weekdays, daily routing from Myeongdong, queue rules, weather fallbacks, sources or dated rechecks, budget, and deadlines.",
+      "files": [],
+      "assertions": [
+        "Every travel day has a weekday label.",
+        "The booked lodging is treated as a hard constraint or daily origin.",
+        "At least one queue threshold has a named alternative.",
+        "Changing information has a source or dated recheck action."
+      ]
+    },
+    {
+      "id": 1,
+      "name": "audit-overloaded-plan",
+      "prompt": "Review this 10-day itinerary with 12 cities and several flights. Keep my choices where possible, but make it workable.",
+      "expected_output": "A clear overload warning, practical alternatives, and an improved itinerary without blocking on confirmation.",
+      "files": [],
+      "assertions": [
+        "The response identifies the overload concretely.",
+        "The response offers a usable alternative rather than only criticism.",
+        "The response continues according to the traveler's choice.",
+        "Arrival and departure buffers are addressed."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "lodging-tradeoff",
+      "prompt": "Should I replace my refundable hotel with a cheaper non-refundable one across town?",
+      "expected_output": "An all-in comparison, a switching threshold, verification of unknown prices or transit, and a decision-closure recommendation.",
+      "files": [],
+      "assertions": [
+        "The response compares all-in rather than headline prices.",
+        "The response sets a concrete switching threshold.",
+        "Unknown transport or fee figures are sourced or marked for recheck.",
+        "The response explicitly closes or keeps open the decision with a reason."
+      ]
+    }
+  ],
+  "trigger_tests": {
+    "should_trigger": [
+      "Build me a seven-day Japan itinerary for October.",
+      "Can you fix the transit in my Portugal travel plan?",
+      "What should I book first for a family trip to Seoul?"
+    ],
+    "should_not_trigger": [
+      "Plan my work schedule for this week.",
+      "How do I finish this project over the next few days?",
+      "Put these tasks in the right order for me."
+    ]
+  }
+}
