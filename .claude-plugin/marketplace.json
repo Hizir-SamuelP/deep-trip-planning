@@ -1,0 +1,16 @@
+{
+  "name": "deep-trip-planning",
+  "owner": {
+    "name": "Hizir-SamuelP"
+  },
+  "plugins": [
+    {
+      "name": "deep-trip-planning",
+      "source": {
+        "source": "github",
+        "repo": "Hizir-SamuelP/deep-trip-planning"
+      },
+      "description": "Build or audit multi-day travel itineraries with date-specific verification and explicit decision thresholds."
+    }
+  ]
+}

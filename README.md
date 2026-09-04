@@ -32,23 +32,18 @@ Give Claude a trip to plan (or an existing plan to review) and it will:
 
 ## Benchmark
 
-Tested against a no-skill baseline on 3 scenarios (open-ended planning, auditing an existing plan, a single hotel/transit question):
-
-| | With skill | Baseline |
-|---|---|---|
-| Assertions passed | **25/25** | 19/25 |
-| Avg tokens | 132.9k | 75.8k |
-| Avg time | 690s | 377s |
-
-The gap is **entirely structural habits, not research ability**. On the "audit this existing plan" scenario both tied 9/9 — when the prompt names what to check, the baseline finds it. The skill's value shows up in open-ended planning, where the baseline reliably omitted: per-day cut priorities, per-day weather fallbacks, dated countdowns (it wrote "2–3 weeks ahead" instead), and budget tiers for the one uncapped line item.
-
-The sharpest single difference was **decision closure**: given a hotel A/B question, the baseline ended with "keep watching, switch if you find something better" — handing an open-ended task back to the user. The skill cites a threshold, back-solves the price at which switching would be worth it, and writes "this decision is now closed."
-
-Cost: roughly +75% tokens and time. For a document you'll use for an entire trip, that trade is usually worth it.
+The published eval scenarios are in `skills/deep-trip-planning/evals/evals.json`. A prior benchmark was not reproducible from the repository, so its scores and token/time figures have been removed while the benchmark is rerun with the published assertions. Treat the evals as a regression checklist, not a performance claim.
 
 ## Install
 
 **Claude Code / Cowork**
+
+```bash
+/plugin marketplace add Hizir-SamuelP/deep-trip-planning
+/plugin install deep-trip-planning
+```
+
+**Manual installation** (for environments that do not use the plugin system)
 
 ```bash
 git clone https://github.com/Hizir-SamuelP/deep-trip-planning.git
@@ -64,7 +59,9 @@ Then just ask naturally: *"Plan me 5 days in Lisbon in April"* or *"Look at this
 
 ```
 skills/deep-trip-planning/
-├── SKILL.md                        # 8-step workflow + decision rules (~215 lines)
+├── SKILL.md                        # Workflow + decision rules
+├── scripts/trip_dates.py           # Network-verified weekdays, holidays, long weekends
+├── evals/evals.json                # Regression and trigger cases
 └── references/
     ├── verification.md             # Day-of-week checks, holidays, policy changes,
     │                               #   seasonal windows, golden-hour back-solving
@@ -96,7 +93,7 @@ Issues and PRs welcome — especially:
 - **Travel styles this doesn't serve well** — it was extracted from an urban public-transit trip and generalized outward, so self-drive, multi-city, and family travel have had less real-world exercise
 - **Failure reports**: a plan it produced that broke on the ground, and why
 
-`evals/evals.json` holds the test prompts. If you change `SKILL.md`, re-run them.
+`skills/deep-trip-planning/evals/evals.json` holds the test prompts. If you change `SKILL.md`, re-run them.
 
 ## Related
 
@@ -136,23 +133,18 @@ MIT — see [LICENSE](LICENSE).
 
 ## 实测对比
 
-用 3 个场景（开放式规划、审查现成行程、单点酒店/交通问题）和"不带 skill"做了对照：
-
-| | 带 skill | 基线 |
-|---|---|---|
-| 断言通过 | **25/25** | 19/25 |
-| 平均 token | 132.9k | 75.8k |
-| 平均耗时 | 690 秒 | 377 秒 |
-
-**差距 100% 来自结构性习惯，不是查资料能力。** "审查现成行程"那题两边打平 9/9——当提示词本身点名了要查什么，基线也能查到。skill 的价值集中在开放式规划：基线稳定地漏掉每日删减层级、每日天气预案、带具体日期的倒计时（它写的是"提前 2–3 周"）、以及唯一无上限项的预算档位。
-
-**最锋利的差异是"关闭决策"**：同一个酒店 A/B 问题，基线以"继续观察，找到更好的再换"收尾——把开放式任务丢回给用户；带 skill 的引用门槛、反推出对方要卖到多少才值得换、并写下"这个决策现在关闭"。
-
-代价：多花约 75% 的 token 和时间。对一份要用一整趟旅行的文档来说，这个交换通常划算。
+公开的评测场景位于 `skills/deep-trip-planning/evals/evals.json`。此前的 benchmark 无法从仓库里的材料复现，因此先移除了分数、token 和耗时数字；目前正在按公开 assertion 重跑。请把这些 eval 当作回归检查表，而不是性能承诺。
 
 ## 安装
 
 **Claude Code / Cowork**
+
+```bash
+/plugin marketplace add Hizir-SamuelP/deep-trip-planning
+/plugin install deep-trip-planning
+```
+
+**手动安装**（不使用插件系统的环境）
 
 ```bash
 git clone https://github.com/Hizir-SamuelP/deep-trip-planning.git
@@ -182,7 +174,7 @@ cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 - **它服务得不够好的旅行方式**——这套方法是从城市 + 公共交通的行程里提炼出来再往外扩的，自驾、多城市、带娃带老人的实战检验还不够
 - **失败报告**：它做出来的攻略在现场哪里崩了、为什么
 
-`evals/evals.json` 是测试用例。改了 `SKILL.md` 记得重跑一遍。
+`skills/deep-trip-planning/evals/evals.json` 是测试用例。改了 `SKILL.md` 记得重跑一遍。
 
 ## 相关
 

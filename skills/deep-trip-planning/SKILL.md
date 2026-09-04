@@ -1,6 +1,8 @@
 ---
 name: deep-trip-planning
 description: 制作可执行的深度旅行攻略，或审查、修补一份已有的行程。适用于用户提到"帮我规划X天行程""做个攻略""看看我这个行程有没有问题""帮我排一下路线""这几天怎么玩"，以及任何涉及多日行程、逐日排线、订票倒计时、住宿比价、当地交通、离境日安排的场景——哪怕用户没说"攻略"两个字。城市游、自驾、多城市、带娃带老人都适用；先问清旅行风格，再把偏好落成具体门槛。核心是把"列了一堆地方"升级成"每个决定都有门槛、每个时间都经得起倒推、每条信息都核到了那一天那个时间点"。也用于单点问题：某天路线是否合理、这家酒店该不该换、这个预算够不够、这段路怎么走。
+license: MIT
+compatibility: Requires network access for current-source verification and python3 to run the bundled date/holiday checker. Install the Python holidays package when prompted.
 allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/*)
 ---
 
