@@ -44,4 +44,4 @@ Personal trip reports reveal things official pages omit: the quietest time, corr
 
 ## 6. Write verification into the plan
 
-Record the verification state, not just the answer: link officially checked pages and their date checked; label social-only leads and their date; for gaps, write “recheck X days before departure” and exactly where. Hard facts—hours, closure days, prices, fares, transfer counts, reservation rules, holidays, and live seasonal windows—need a source from this planning session. Training-data memories are stale. End with sources, then repeat critical checks seven days before departure and on departure day.
+Record the verification state, not just the answer: link officially checked pages and their date checked; label social-only leads and their date; for gaps, write “recheck X days before departure” and exactly where. Hard facts—hours, closure days, prices, fares, transfer counts, reservation rules, holidays, live seasonal windows, and step and slope conditions—need a source from this planning session. Training-data memories are stale. End with sources, then repeat critical checks seven days before departure and on departure day.

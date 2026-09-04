@@ -32,7 +32,19 @@ Give Claude a trip to plan (or an existing plan to review) and it will:
 
 ## Benchmark
 
-The published eval scenarios are in `skills/deep-trip-planning/evals/evals.json`. A prior benchmark was not reproducible from the repository, so its scores and token/time figures have been removed while the benchmark is rerun with the published assertions. Treat the evals as a regression checklist, not a performance claim.
+Scenarios and assertions live in `skills/deep-trip-planning/evals/evals.json`. Each case was run once with the skill and once without, then graded assertion by assertion:
+
+| Case | With skill | Without | Δ |
+|---|---|---|---|
+| Hokkaido winter self-drive | 6/7 | 3/7 | +0.43 |
+| Kyoto with elderly parents (limits stated) | 7/7 | 7/7 | 0.00 |
+| Kyoto with elderly parents (limits unstated) | 5/5 | 4/5 | +0.20 |
+
+Read these honestly. The skill helps most on **self-drive**, and what it adds there is unglamorous: drive-time margins, the return-the-car-to-boarding-pass back-solve, offline map coverage. Both configurations independently caught the dramatic blocker (a mainland Chinese licence cannot legally be used to drive in Japan).
+
+On **elderly travel the skill adds little** — the model already slows the itinerary down on its own, so the stated-limits case produced no signal at all and its assertions are not evidence of anything. The one repeatable gap was source discipline: the baseline asserted step and slope conditions without citing or flagging them. That is now a named category in the skill's hard-source rule.
+
+Single runs, no standard deviation. The baseline was isolated by forbidding it to read this repository, which is an approximation, not a clean context.
 
 ## Install
 
@@ -148,7 +160,19 @@ MIT — see [LICENSE](LICENSE).
 
 ## 实测对比
 
-公开的评测场景位于 `skills/deep-trip-planning/evals/evals.json`。此前的 benchmark 无法从仓库里的材料复现，因此先移除了分数、token 和耗时数字；目前正在按公开 assertion 重跑。请把这些 eval 当作回归检查表，而不是性能承诺。
+场景与 assertion 都在 `skills/deep-trip-planning/evals/evals.json`。每个用例用 skill 跑一遍、不用 skill 跑一遍，再逐条判定：
+
+| 用例 | 用 skill | 不用 | Δ |
+|---|---|---|---|
+| 北海道冬季自驾 | 6/7 | 3/7 | +0.43 |
+| 京都带老人（限制已言明） | 7/7 | 7/7 | 0.00 |
+| 京都带老人（限制未言明） | 5/5 | 4/5 | +0.20 |
+
+这几个数字要照实读。**skill 的价值集中在自驾**，而且加的全是不起眼的东西：车程余量、还车到值机的倒推、离线地图覆盖。至于那个戏剧性的门槛（中国大陆驾照在日本不能合法驾驶），两种配置都独立抓到了。
+
+**带老人这一类 skill 增量很小**——模型本来就会把行程放慢，所以"限制已言明"那题两边满分、不构成任何证据。唯一可复现的差距是来源纪律：基线直接断言台阶与坡度实情，既不附来源也不标复核。这一条现在已经写进 skill 的硬来源规则。
+
+单次运行，无标准差。基线用"禁止读取本仓库"来近似隔离，不是完全干净的上下文。
 
 ## 安装
 
@@ -192,7 +216,7 @@ cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 特别欢迎这几类 issue 和 PR：
 
 - **能泛化的地区性坑**（交通习惯、订房平台的表述陷阱、海关规则）
-- **它服务得不够好的旅行方式**——这套方法是从城市 + 公共交通的行程里提炼出来再往外扩的，自驾、多城市、带娃带老人的实战检验还不够
+- **它服务得不够好的旅行方式**——这套方法是从城市 + 公共交通的行程里提炼出来再往外扩的。自驾和带老人已有 eval 实测（见「实测对比」），**多城市和带娃仍未检验**
 - **失败报告**：它做出来的攻略在现场哪里崩了、为什么
 
 `skills/deep-trip-planning/evals/evals.json` 是测试用例。改了 `SKILL.md` 记得重跑一遍。

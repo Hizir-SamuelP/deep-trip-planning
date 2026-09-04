@@ -30,6 +30,17 @@ Airport buses, sightseeing lines, and rural branches may finish at seven or eigh
 
 Replace transit traps with actual map-checked drive times, parking availability and costs, fuel/charging points, seasonal road closures and equipment requirements, no-signal sections, and licensing recognition. Add 20–30% to each checked driving time and add separate city-parking time; distance alone is not a time estimate.
 
+**Licence eligibility is a gate, not a to-do.** Confirm that every intended driver may legally drive there before routing anything: some countries do not recognise certain licences or their translations, which invalidates the whole self-drive premise. Do not conclude that the traveller may drive—give the official page to check and the latest date to act, and offer alternatives (charter, public transit, a differently licensed driver).
+
+**Cap driving hours per day, not just total distance.** Summed leg times are not what a person can drive:
+
+- State a daily driving-hours ceiling including breaks; exceeding it means splitting the day or moving the lodging
+- Name break points on long days, tied to a continuous-driving limit
+- With only one eligible driver, lower the ceiling and write down that there is no rotation
+- Count driving after dark separately: winter and high-latitude sunsets are early, and snow, mountain roads, and wildlife make night legs either avoidable or a stated risk
+
+Set the numbers from the traveller's pace and the road conditions, but **make them numbers**—"don't drive tired" is not an executable rule.
+
 ## 3. Passes: show the arithmetic
 
 Default to pay-as-you-go: transit card, contactless card, or individual tickets. Buy a pass only for a day or segment where the calculation wins: “three rides A + B + C ≈ X; day pass Y; saving Z.” Multi-day passes often lose because walking days and light-use days are included. A tourism bureau's promoted pass is an average-traveler product, not proof for this route. State why a rejected pass is not being bought and how many uses would make it pay back.

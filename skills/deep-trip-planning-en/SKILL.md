@@ -58,7 +58,7 @@ Compare every day with step 0's hard constraints and step 0.5's preference numbe
 
 ## Rules that apply throughout
 
-⚠ **Opening hours, closure days, prices and fares, travel times and transfer counts, reservation rules and availability windows, public holidays, and the current prediction window for seasonal events need a source checked in this planning session.** Treat remembered training data as stale. If you cannot cite a source, do not state the number; write “recheck X days before departure” and where to do it. An honest gap is better than a confident error.
+⚠ **Opening hours, closure days, prices and fares, travel times and transfer counts, reservation rules and availability windows, public holidays, the current prediction window for seasonal events, and step and slope conditions need a source checked in this planning session.** Treat remembered training data as stale. If you cannot cite a source, do not state the number; write “recheck X days before departure” and where to do it. An honest gap is better than a confident error.
 
 ⚠ All numeric examples are placeholders. Use the traveler's stated preferences, not the planner's.
 
