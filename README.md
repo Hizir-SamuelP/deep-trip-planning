@@ -40,7 +40,7 @@ The published eval scenarios are in `skills/deep-trip-planning/evals/evals.json`
 
 ```bash
 /plugin marketplace add Hizir-SamuelP/deep-trip-planning
-/plugin install deep-trip-planning
+/plugin install deep-trip-planning@hizir-skills
 ```
 
 **Manual installation** (for environments that do not use the plugin system)
@@ -50,6 +50,8 @@ git clone https://github.com/Hizir-SamuelP/deep-trip-planning.git
 mkdir -p ~/.claude/skills
 cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 ```
+
+The marketplace is named `hizir-skills` and also carries [niuma-recheck](https://github.com/Hizir-SamuelP/niuma-recheck), so `/plugin install niuma-recheck@hizir-skills` works from the same marketplace.
 
 That command copies the complete skill, including `scripts/`, `references/`, and `assets/`. Do not install only `SKILL.md`: the date checker is a hard safety requirement.
 
@@ -154,7 +156,7 @@ MIT — see [LICENSE](LICENSE).
 
 ```bash
 /plugin marketplace add Hizir-SamuelP/deep-trip-planning
-/plugin install deep-trip-planning
+/plugin install deep-trip-planning@hizir-skills
 ```
 
 **手动安装**（不使用插件系统的环境）
@@ -164,6 +166,8 @@ git clone https://github.com/Hizir-SamuelP/deep-trip-planning.git
 mkdir -p ~/.claude/skills
 cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 ```
+
+市场名叫 `hizir-skills`，里面还挂着 [niuma-recheck](https://github.com/Hizir-SamuelP/niuma-recheck)，所以 `/plugin install niuma-recheck@hizir-skills` 也能从同一个市场装。
 
 这条命令会复制完整 skill，包括 `scripts/`、`references/` 和 `assets/`。不能只装 `SKILL.md`：日期脚本是硬性安全要求。
 

@@ -1,5 +1,5 @@
 {
-  "name": "deep-trip-planning",
+  "name": "hizir-skills",
   "owner": {
     "name": "Hizir-SamuelP"
   },
@@ -11,6 +11,14 @@
         "repo": "Hizir-SamuelP/deep-trip-planning"
       },
       "description": "Build or audit multi-day travel itineraries with date-specific verification and explicit decision thresholds."
+    },
+    {
+      "name": "niuma-recheck",
+      "source": {
+        "source": "github",
+        "repo": "Hizir-SamuelP/niuma-recheck"
+      },
+      "description": "Plan, hand off to a worker AI, then independently re-test every claim that the work is done."
     }
   ]
 }
