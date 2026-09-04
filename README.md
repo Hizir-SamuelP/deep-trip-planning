@@ -36,13 +36,22 @@ Scenarios and assertions live in `skills/deep-trip-planning/evals/evals.json`. E
 
 | Case | With skill | Without | Δ |
 |---|---|---|---|
+| Japan multi-city, 4 cities in 10 days | 6/6 | 2/6 | +0.67 |
 | Hokkaido winter self-drive | 6/7 | 3/7 | +0.43 |
-| Kyoto with elderly parents (limits stated) | 7/7 | 7/7 | 0.00 |
 | Kyoto with elderly parents (limits unstated) | 5/5 | 4/5 | +0.20 |
+| Europe, 3 countries over New Year | 7/7 | 6/7 | +0.14 |
+| Kyoto with elderly parents (limits stated) | 7/7 | 7/7 | 0.00 |
+| Tokyo with a 2.5-year-old | 6/6 | 6/6 | 0.00 |
 
-Read these honestly. The skill helps most on **self-drive**, and what it adds there is unglamorous: drive-time margins, the return-the-car-to-boarding-pass back-solve, offline map coverage. Both configurations independently caught the dramatic blocker (a mainland Chinese licence cannot legally be used to drive in Japan).
+Read these honestly.
 
-On **elderly travel the skill adds little** — the model already slows the itinerary down on its own, so the stated-limits case produced no signal at all and its assertions are not evidence of anything. The one repeatable gap was source discipline: the baseline asserted step and slope conditions without citing or flagging them. That is now a named category in the skill's hard-source rule.
+**Where the skill earns its place: multi-city and self-drive.** What it adds there is unglamorous — a per-city origin instead of one, luggage between checkout and check-in, drive-time margins, the return-the-car-to-boarding-pass back-solve, offline map coverage, and an overload judgment the user never asked for. The baseline lost those four multi-city points on discipline, not on knowledge.
+
+**Where it adds nothing: elderly and toddler pacing.** The model already slows those itineraries down on its own — naps, closure days, turnaround points, downgrade ladders. Both cases tied, so no elderly- or child-specific content was added to the skill. Writing down what the model already does only costs context.
+
+**Counting assertions hides severity.** The multi-country case differs by a single point, and that point matters more than the four in multi-city: the baseline told the user which consulate to apply to. The rule was right, the conclusion was not the plan's to make, and being wrong there costs the trip.
+
+**A note for anyone writing evals against this skill:** do not write assertions of the form "does it know fact X." They do not discriminate, because the baseline searches too — it independently found the mainland-licence bar in Japan, the Kanazawa transfer that changed in 2024, and that Swiss VAT must be reclaimed at the Swiss border. What separates the runs is whether the disciplined work got done: margins, back-solves, per-fact sourcing, closed decisions.
 
 Single runs, no standard deviation. The baseline was isolated by forbidding it to read this repository, which is an approximation, not a clean context.
 
@@ -164,13 +173,22 @@ MIT — see [LICENSE](LICENSE).
 
 | 用例 | 用 skill | 不用 | Δ |
 |---|---|---|---|
+| 日本多城市·10 天四城 | 6/6 | 2/6 | +0.67 |
 | 北海道冬季自驾 | 6/7 | 3/7 | +0.43 |
-| 京都带老人（限制已言明） | 7/7 | 7/7 | 0.00 |
 | 京都带老人（限制未言明） | 5/5 | 4/5 | +0.20 |
+| 欧洲三国跨年 | 7/7 | 6/7 | +0.14 |
+| 京都带老人（限制已言明） | 7/7 | 7/7 | 0.00 |
+| 东京带 2 岁半小孩 | 6/6 | 6/6 | 0.00 |
 
-这几个数字要照实读。**skill 的价值集中在自驾**，而且加的全是不起眼的东西：车程余量、还车到值机的倒推、离线地图覆盖。至于那个戏剧性的门槛（中国大陆驾照在日本不能合法驾驶），两种配置都独立抓到了。
+这几个数字要照实读。
 
-**带老人这一类 skill 增量很小**——模型本来就会把行程放慢，所以"限制已言明"那题两边满分、不构成任何证据。唯一可复现的差距是来源纪律：基线直接断言台阶与坡度实情，既不附来源也不标复核。这一条现在已经写进 skill 的硬来源规则。
+**skill 站得住的地方是多城市和自驾。** 它加的全是不起眼的东西：每座城各有自己的原点而不是套一个、退房到入住之间的行李、车程余量、还车到值机的倒推、离线地图覆盖，以及用户没问也要给的过载判断。基线在多城市丢的那四分，丢的是纪律不是知识。
+
+**加不上分的地方是带老人和带娃。** 模型本来就会把这类行程放慢——午睡、闭馆日、折返点、降级方案，它自己都会想到。两题都打平，所以 skill 里**没有**增加任何老人或儿童专属内容。把模型已经会做的事再写一遍，只是消耗上下文。
+
+**断言计数掩盖严重度。** 多国那题只差 1 分，而那 1 分比多城市的 4 分都重：基线直接告诉用户该向哪国领馆递签。规则讲对了，但这个结论不该由攻略来下，而递错国的代价是整趟作废。
+
+**给要为这个 skill 写 eval 的人：** 不要写"它知不知道事实 X"这种断言，它不区分——基线也会联网搜，而且独立查出了中国驾照在日本不能驾驶、金泽换乘在 2024 年之后的变化、以及瑞士退税要在瑞士边境办。真正拉开差距的是**纪律有没有做完**：余量、倒推、逐条来源、关闭决策。
 
 单次运行，无标准差。基线用"禁止读取本仓库"来近似隔离，不是完全干净的上下文。
 
@@ -216,7 +234,7 @@ cp -r deep-trip-planning/skills/deep-trip-planning ~/.claude/skills/
 特别欢迎这几类 issue 和 PR：
 
 - **能泛化的地区性坑**（交通习惯、订房平台的表述陷阱、海关规则）
-- **它服务得不够好的旅行方式**——这套方法是从城市 + 公共交通的行程里提炼出来再往外扩的。自驾和带老人已有 eval 实测（见「实测对比」），**多城市和带娃仍未检验**
+- **它服务得不够好的旅行方式**——这套方法是从城市 + 公共交通的行程里提炼出来再往外扩的。自驾、带老人、带娃、多城市、多国都已有 eval 实测（见「实测对比」）。**仍未检验的是：邮轮、长途巴士背包、无固定住宿的游牧式行程，以及南半球与热带雨季**
 - **失败报告**：它做出来的攻略在现场哪里崩了、为什么
 
 `skills/deep-trip-planning/evals/evals.json` 是测试用例。改了 `SKILL.md` 记得重跑一遍。
